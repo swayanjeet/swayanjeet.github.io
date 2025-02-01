@@ -1,7 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coal Supply Chain</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            background: url('/static/coal_worker.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .overlay {
+            background: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .navbar {
+            background-color: rgba(52, 58, 64, 0.9);
+        }
+        .container {
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .supply-chain {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .chain-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            width: 150px;
+            cursor: pointer;
+        }
+        .chain-item:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 1);
+        }
+        .chain-item i {
+            font-size: 50px;
+            color: #343a40;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+    <div class="overlay"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Coal Supply Chain</a>
+            <div class="navbar-nav ms-auto">
+                <span class="nav-item nav-link text-white">
+                    <i class="bi bi-person-circle"></i> Logged in
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center text-white">Coal Supply Chain Flow</h2>
+
+        <!-- Supply Chain Components -->
+        <div class="supply-chain">
+            <div class="chain-item" data-bs-toggle="modal" data-bs-target="#gatePassModal">
+                <i class="bi bi-door-open"></i>
+                <p>Gate Pass</p>
+            </div>
+            <div class="chain-item" data-bs-toggle="modal" data-bs-target="#transportModal">
+                <i class="bi bi-truck"></i>
+                <p>Transport</p>
+            </div>
+            <div class="chain-item" data-bs-toggle="modal" data-bs-target="#storageModal">
+                <i class="bi bi-box-seam"></i>
+                <p>Storage</p>
+            </div>
+            <div class="chain-item" data-bs-toggle="modal" data-bs-target="#distributionModal">
+                <i class="bi bi-shop"></i>
+                <p>Distribution</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gate Pass Modal -->
+    <div class="modal fade" id="gatePassModal" tabindex="-1" aria-labelledby="gatePassModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gatePassModalLabel">Gate Pass Entry</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Date</label>
+                            <input type="date" name="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Truck Number</label>
+                            <input type="text" name="truck_number" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Driver Name</label>
+                            <input type="text" name="driver_name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Supplier Name</label>
+                            <input type="text" name="supplier_name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Destination</label>
+                            <input type="text" name="destination" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Coal Type</label>
+                            <input type="text" name="coal_type" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quantity (in tons)</label>
+                            <input type="number" step="0.01" name="quantity" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Entry Time</label>
+                            <input type="time" name="entry_time" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Exit Time</label>
+                            <input type="time" name="exit_time" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
